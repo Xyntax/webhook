@@ -198,6 +198,12 @@ def addrepo():
         abort(403)
     if repo in repos:
         abort(403)
+    m = re.search(
+        r'https://(github\.com|git\.coding\.net)/\w+/(\w+)\.git', url)
+    if not m:
+        abort(403)
+    if m.group(2) != repo:
+        abort(403)
     repos[repo] = {
         "url": url,
         "pass": md5.md5(password + app.config['SECRET_KEY']).hexdigest()
