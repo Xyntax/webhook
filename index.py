@@ -158,7 +158,7 @@ def dir_listing(req_path):
     # Joining the base and the requested path
     abs_path = os.path.realpath(os.path.join(BASE_DIR, req_path))
     # Return 404 if path doesn't exist
-    if not os.path.exists(abs_path) or abs_path.startswith(BASE_DIR):
+    if not os.path.exists(abs_path) or not abs_path.startswith(BASE_DIR):
         return abort(404)
 
     # Check if path is a file and serve
