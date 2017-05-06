@@ -199,7 +199,7 @@ def addrepo():
     if repo in repos:
         abort(403)
     m = re.search(
-        r'https://(github\.com|git\.coding\.net)/\w+/(\w+)\.git', url)
+        r'^https://(github\.com|git\.coding\.net)/\w+/(\w+)\.git$', url)
     if not m:
         abort(403)
     if m.group(2) != repo:
